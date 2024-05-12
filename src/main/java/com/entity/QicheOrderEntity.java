@@ -1,92 +1,114 @@
-package com.entity.vo;
+package com.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 /**
+ *
  * 汽车订单
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ *
+ * @author 
+ * @email
  */
 @TableName("qiche_order")
-public class QicheOrderVO implements Serializable {
+public class QicheOrderEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
+	public QicheOrderEntity() {
+
+	}
+
+	public QicheOrderEntity(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
     /**
      * 主键
      */
-
+    @TableId(type = IdType.AUTO)
     @TableField(value = "id")
+
     private Integer id;
 
 
     /**
      * 订单号
      */
-
     @TableField(value = "qiche_order_uuid_number")
+
     private String qicheOrderUuidNumber;
 
 
     /**
      * 收货地址
      */
-
     @TableField(value = "address_id")
+
     private Integer addressId;
 
 
     /**
      * 汽车
      */
-
     @TableField(value = "qiche_id")
+
     private Integer qicheId;
 
 
     /**
      * 用户
      */
-
     @TableField(value = "yonghu_id")
+
     private Integer yonghuId;
 
 
     /**
      * 购买数量
      */
-
     @TableField(value = "buy_number")
+
     private Integer buyNumber;
 
 
     /**
      * 实付价格
      */
-
     @TableField(value = "qiche_order_true_price")
+
     private Double qicheOrderTruePrice;
 
 
     /**
      * 订单类型
      */
-
     @TableField(value = "qiche_order_types")
+
     private Integer qicheOrderTypes;
 
 
     /**
      * 支付类型
      */
-
     @TableField(value = "qiche_order_payment_types")
+
     private Integer qicheOrderPaymentTypes;
 
 
@@ -95,18 +117,18 @@ public class QicheOrderVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "insert_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
     /**
-     * 创建时间 show3
+     * 创建时间
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -116,8 +138,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getId() {
         return id;
     }
-
-
     /**
 	 * 获取：主键
 	 */
@@ -131,8 +151,6 @@ public class QicheOrderVO implements Serializable {
     public String getQicheOrderUuidNumber() {
         return qicheOrderUuidNumber;
     }
-
-
     /**
 	 * 获取：订单号
 	 */
@@ -146,8 +164,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getAddressId() {
         return addressId;
     }
-
-
     /**
 	 * 获取：收货地址
 	 */
@@ -161,8 +177,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getQicheId() {
         return qicheId;
     }
-
-
     /**
 	 * 获取：汽车
 	 */
@@ -176,8 +190,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getYonghuId() {
         return yonghuId;
     }
-
-
     /**
 	 * 获取：用户
 	 */
@@ -191,8 +203,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getBuyNumber() {
         return buyNumber;
     }
-
-
     /**
 	 * 获取：购买数量
 	 */
@@ -206,8 +216,6 @@ public class QicheOrderVO implements Serializable {
     public Double getQicheOrderTruePrice() {
         return qicheOrderTruePrice;
     }
-
-
     /**
 	 * 获取：实付价格
 	 */
@@ -221,8 +229,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getQicheOrderTypes() {
         return qicheOrderTypes;
     }
-
-
     /**
 	 * 获取：订单类型
 	 */
@@ -236,8 +242,6 @@ public class QicheOrderVO implements Serializable {
     public Integer getQicheOrderPaymentTypes() {
         return qicheOrderPaymentTypes;
     }
-
-
     /**
 	 * 获取：支付类型
 	 */
@@ -251,8 +255,6 @@ public class QicheOrderVO implements Serializable {
     public Date getInsertTime() {
         return insertTime;
     }
-
-
     /**
 	 * 获取：订单创建时间
 	 */
@@ -261,19 +263,33 @@ public class QicheOrderVO implements Serializable {
         this.insertTime = insertTime;
     }
     /**
-	 * 设置：创建时间 show3
+	 * 设置：创建时间
 	 */
     public Date getCreateTime() {
         return createTime;
     }
-
-
     /**
-	 * 获取：创建时间 show3
+	 * 获取：创建时间
 	 */
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
+    @Override
+    public String toString() {
+        return "QicheOrder{" +
+            "id=" + id +
+            ", qicheOrderUuidNumber=" + qicheOrderUuidNumber +
+            ", addressId=" + addressId +
+            ", qicheId=" + qicheId +
+            ", yonghuId=" + yonghuId +
+            ", buyNumber=" + buyNumber +
+            ", qicheOrderTruePrice=" + qicheOrderTruePrice +
+            ", qicheOrderTypes=" + qicheOrderTypes +
+            ", qicheOrderPaymentTypes=" + qicheOrderPaymentTypes +
+            ", insertTime=" + insertTime +
+            ", createTime=" + createTime +
+        "}";
+    }
 }

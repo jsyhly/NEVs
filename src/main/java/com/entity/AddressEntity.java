@@ -1,68 +1,90 @@
-package com.entity.vo;
+package com.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+
 
 /**
  * 收货地址
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ *
+ * @author 
+ * @email
  */
 @TableName("address")
-public class AddressVO implements Serializable {
+public class AddressEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
+	public AddressEntity() {
+
+	}
+
+	public AddressEntity(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
     /**
      * 主键
      */
-
+    @TableId(type = IdType.AUTO)
     @TableField(value = "id")
+
     private Integer id;
 
 
     /**
      * 创建用户
      */
-
     @TableField(value = "yonghu_id")
+
     private Integer yonghuId;
 
 
     /**
      * 收货人
      */
-
     @TableField(value = "address_name")
+
     private String addressName;
 
 
     /**
      * 电话
      */
-
     @TableField(value = "address_phone")
+
     private String addressPhone;
 
 
     /**
      * 地址
      */
-
     @TableField(value = "address_dizhi")
+
     private String addressDizhi;
 
 
     /**
      * 是否默认地址
      */
-
     @TableField(value = "isdefault_types")
+
     private Integer isdefaultTypes;
 
 
@@ -71,8 +93,8 @@ public class AddressVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "insert_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
@@ -81,18 +103,18 @@ public class AddressVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "update_time",fill = FieldFill.UPDATE)
 
-    @TableField(value = "update_time")
     private Date updateTime;
 
 
     /**
-     * 创建时间 show3
+     * 创建时间
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -102,8 +124,6 @@ public class AddressVO implements Serializable {
     public Integer getId() {
         return id;
     }
-
-
     /**
 	 * 获取：主键
 	 */
@@ -117,8 +137,6 @@ public class AddressVO implements Serializable {
     public Integer getYonghuId() {
         return yonghuId;
     }
-
-
     /**
 	 * 获取：创建用户
 	 */
@@ -132,8 +150,6 @@ public class AddressVO implements Serializable {
     public String getAddressName() {
         return addressName;
     }
-
-
     /**
 	 * 获取：收货人
 	 */
@@ -147,8 +163,6 @@ public class AddressVO implements Serializable {
     public String getAddressPhone() {
         return addressPhone;
     }
-
-
     /**
 	 * 获取：电话
 	 */
@@ -162,8 +176,6 @@ public class AddressVO implements Serializable {
     public String getAddressDizhi() {
         return addressDizhi;
     }
-
-
     /**
 	 * 获取：地址
 	 */
@@ -177,8 +189,6 @@ public class AddressVO implements Serializable {
     public Integer getIsdefaultTypes() {
         return isdefaultTypes;
     }
-
-
     /**
 	 * 获取：是否默认地址
 	 */
@@ -192,8 +202,6 @@ public class AddressVO implements Serializable {
     public Date getInsertTime() {
         return insertTime;
     }
-
-
     /**
 	 * 获取：添加时间
 	 */
@@ -207,8 +215,6 @@ public class AddressVO implements Serializable {
     public Date getUpdateTime() {
         return updateTime;
     }
-
-
     /**
 	 * 获取：修改时间
 	 */
@@ -217,19 +223,31 @@ public class AddressVO implements Serializable {
         this.updateTime = updateTime;
     }
     /**
-	 * 设置：创建时间 show3
+	 * 设置：创建时间
 	 */
     public Date getCreateTime() {
         return createTime;
     }
-
-
     /**
-	 * 获取：创建时间 show3
+	 * 获取：创建时间
 	 */
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+            "id=" + id +
+            ", yonghuId=" + yonghuId +
+            ", addressName=" + addressName +
+            ", addressPhone=" + addressPhone +
+            ", addressDizhi=" + addressDizhi +
+            ", isdefaultTypes=" + isdefaultTypes +
+            ", insertTime=" + insertTime +
+            ", updateTime=" + updateTime +
+            ", createTime=" + createTime +
+        "}";
+    }
 }

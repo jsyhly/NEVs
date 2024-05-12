@@ -1,52 +1,74 @@
-package com.entity.vo;
+package com.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 /**
+ *
  * 汽车评价
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ *
+ * @author 
+ * @email
  */
 @TableName("qiche_commentback")
-public class QicheCommentbackVO implements Serializable {
+public class QicheCommentbackEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
+	public QicheCommentbackEntity() {
+
+	}
+
+	public QicheCommentbackEntity(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
     /**
      * 主键
      */
-
+    @TableId(type = IdType.AUTO)
     @TableField(value = "id")
+
     private Integer id;
 
 
     /**
      * 汽车
      */
-
     @TableField(value = "qiche_id")
+
     private Integer qicheId;
 
 
     /**
      * 用户
      */
-
     @TableField(value = "yonghu_id")
+
     private Integer yonghuId;
 
 
     /**
      * 评价内容
      */
-
     @TableField(value = "qiche_commentback_text")
+
     private String qicheCommentbackText;
 
 
@@ -55,16 +77,16 @@ public class QicheCommentbackVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "insert_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
     /**
      * 回复内容
      */
-
     @TableField(value = "reply_text")
+
     private String replyText;
 
 
@@ -73,8 +95,8 @@ public class QicheCommentbackVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "update_time",fill = FieldFill.UPDATE)
 
-    @TableField(value = "update_time")
     private Date updateTime;
 
 
@@ -83,8 +105,8 @@ public class QicheCommentbackVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -94,8 +116,6 @@ public class QicheCommentbackVO implements Serializable {
     public Integer getId() {
         return id;
     }
-
-
     /**
 	 * 获取：主键
 	 */
@@ -109,8 +129,6 @@ public class QicheCommentbackVO implements Serializable {
     public Integer getQicheId() {
         return qicheId;
     }
-
-
     /**
 	 * 获取：汽车
 	 */
@@ -124,8 +142,6 @@ public class QicheCommentbackVO implements Serializable {
     public Integer getYonghuId() {
         return yonghuId;
     }
-
-
     /**
 	 * 获取：用户
 	 */
@@ -139,8 +155,6 @@ public class QicheCommentbackVO implements Serializable {
     public String getQicheCommentbackText() {
         return qicheCommentbackText;
     }
-
-
     /**
 	 * 获取：评价内容
 	 */
@@ -154,8 +168,6 @@ public class QicheCommentbackVO implements Serializable {
     public Date getInsertTime() {
         return insertTime;
     }
-
-
     /**
 	 * 获取：评价时间
 	 */
@@ -169,8 +181,6 @@ public class QicheCommentbackVO implements Serializable {
     public String getReplyText() {
         return replyText;
     }
-
-
     /**
 	 * 获取：回复内容
 	 */
@@ -184,8 +194,6 @@ public class QicheCommentbackVO implements Serializable {
     public Date getUpdateTime() {
         return updateTime;
     }
-
-
     /**
 	 * 获取：回复时间
 	 */
@@ -199,8 +207,6 @@ public class QicheCommentbackVO implements Serializable {
     public Date getCreateTime() {
         return createTime;
     }
-
-
     /**
 	 * 获取：创建时间
 	 */
@@ -209,4 +215,17 @@ public class QicheCommentbackVO implements Serializable {
         this.createTime = createTime;
     }
 
+    @Override
+    public String toString() {
+        return "QicheCommentback{" +
+            "id=" + id +
+            ", qicheId=" + qicheId +
+            ", yonghuId=" + yonghuId +
+            ", qicheCommentbackText=" + qicheCommentbackText +
+            ", insertTime=" + insertTime +
+            ", replyText=" + replyText +
+            ", updateTime=" + updateTime +
+            ", createTime=" + createTime +
+        "}";
+    }
 }

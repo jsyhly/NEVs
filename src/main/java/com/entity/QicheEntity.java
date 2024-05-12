@@ -1,118 +1,140 @@
-package com.entity.vo;
+package com.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 /**
+ *
  * 汽车
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ *
+ * @author 
+ * @email
  */
 @TableName("qiche")
-public class QicheVO implements Serializable {
+public class QicheEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
+	public QicheEntity() {
+
+	}
+
+	public QicheEntity(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
     /**
      * 主键
      */
-
+    @TableId(type = IdType.AUTO)
     @TableField(value = "id")
+
     private Integer id;
 
 
     /**
      * 汽车名称
      */
-
     @TableField(value = "qiche_name")
+
     private String qicheName;
 
 
     /**
      * 汽车照片
      */
-
     @TableField(value = "qiche_photo")
+
     private String qichePhoto;
 
 
     /**
      * 汽车类型
      */
-
     @TableField(value = "qiche_types")
+
     private Integer qicheTypes;
 
 
     /**
      * 汽车库存
      */
-
     @TableField(value = "qiche_kucun_number")
+
     private Integer qicheKucunNumber;
 
 
     /**
      * 汽车原价
      */
-
     @TableField(value = "qiche_old_money")
+
     private Double qicheOldMoney;
 
 
     /**
      * 现价
      */
-
     @TableField(value = "qiche_new_money")
+
     private Double qicheNewMoney;
 
 
     /**
      * 点击次数
      */
-
     @TableField(value = "qiche_clicknum")
+
     private Integer qicheClicknum;
 
 
     /**
      * 是否上架
      */
-
     @TableField(value = "shangxia_types")
+
     private Integer shangxiaTypes;
 
 
     /**
      * 逻辑删除
      */
-
     @TableField(value = "qiche_delete")
+
     private Integer qicheDelete;
 
 
     /**
      * 汽车简介
      */
-
     @TableField(value = "qiche_content")
+
     private String qicheContent;
 
 
     /**
-     * 创建时间  show1 show2 photoShow
+     * 创建时间
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -122,8 +144,6 @@ public class QicheVO implements Serializable {
     public Integer getId() {
         return id;
     }
-
-
     /**
 	 * 获取：主键
 	 */
@@ -137,8 +157,6 @@ public class QicheVO implements Serializable {
     public String getQicheName() {
         return qicheName;
     }
-
-
     /**
 	 * 获取：汽车名称
 	 */
@@ -152,8 +170,6 @@ public class QicheVO implements Serializable {
     public String getQichePhoto() {
         return qichePhoto;
     }
-
-
     /**
 	 * 获取：汽车照片
 	 */
@@ -167,8 +183,6 @@ public class QicheVO implements Serializable {
     public Integer getQicheTypes() {
         return qicheTypes;
     }
-
-
     /**
 	 * 获取：汽车类型
 	 */
@@ -182,8 +196,6 @@ public class QicheVO implements Serializable {
     public Integer getQicheKucunNumber() {
         return qicheKucunNumber;
     }
-
-
     /**
 	 * 获取：汽车库存
 	 */
@@ -197,8 +209,6 @@ public class QicheVO implements Serializable {
     public Double getQicheOldMoney() {
         return qicheOldMoney;
     }
-
-
     /**
 	 * 获取：汽车原价
 	 */
@@ -212,8 +222,6 @@ public class QicheVO implements Serializable {
     public Double getQicheNewMoney() {
         return qicheNewMoney;
     }
-
-
     /**
 	 * 获取：现价
 	 */
@@ -227,8 +235,6 @@ public class QicheVO implements Serializable {
     public Integer getQicheClicknum() {
         return qicheClicknum;
     }
-
-
     /**
 	 * 获取：点击次数
 	 */
@@ -242,8 +248,6 @@ public class QicheVO implements Serializable {
     public Integer getShangxiaTypes() {
         return shangxiaTypes;
     }
-
-
     /**
 	 * 获取：是否上架
 	 */
@@ -257,8 +261,6 @@ public class QicheVO implements Serializable {
     public Integer getQicheDelete() {
         return qicheDelete;
     }
-
-
     /**
 	 * 获取：逻辑删除
 	 */
@@ -272,8 +274,6 @@ public class QicheVO implements Serializable {
     public String getQicheContent() {
         return qicheContent;
     }
-
-
     /**
 	 * 获取：汽车简介
 	 */
@@ -282,19 +282,34 @@ public class QicheVO implements Serializable {
         this.qicheContent = qicheContent;
     }
     /**
-	 * 设置：创建时间  show1 show2 photoShow
+	 * 设置：创建时间
 	 */
     public Date getCreateTime() {
         return createTime;
     }
-
-
     /**
-	 * 获取：创建时间  show1 show2 photoShow
+	 * 获取：创建时间
 	 */
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
+    @Override
+    public String toString() {
+        return "Qiche{" +
+            "id=" + id +
+            ", qicheName=" + qicheName +
+            ", qichePhoto=" + qichePhoto +
+            ", qicheTypes=" + qicheTypes +
+            ", qicheKucunNumber=" + qicheKucunNumber +
+            ", qicheOldMoney=" + qicheOldMoney +
+            ", qicheNewMoney=" + qicheNewMoney +
+            ", qicheClicknum=" + qicheClicknum +
+            ", shangxiaTypes=" + shangxiaTypes +
+            ", qicheDelete=" + qicheDelete +
+            ", qicheContent=" + qicheContent +
+            ", createTime=" + createTime +
+        "}";
+    }
 }
