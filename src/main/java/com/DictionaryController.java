@@ -65,8 +65,8 @@ public class DictionaryController {
         PageUtils page = dictionaryService.queryPage(params);
 
         //字典表数据转换
-        List<DictionaryView> list =(List<DictionaryView>)page.getList();
-        for(DictionaryView c:list){
+        List<com.entity.view.DictionaryView> list =(List<com.entity.view.DictionaryView>)page.getList();
+        for(com.entity.view.DictionaryView c:list){
             //修改对应字典表字段
             dictionaryService.dictionaryConvert(c, request);
         }
@@ -82,7 +82,7 @@ public class DictionaryController {
         DictionaryEntity dictionary = dictionaryService.selectById(id);
         if(dictionary !=null){
             //entity转view
-            DictionaryView view = new DictionaryView();
+            com.entity.view.DictionaryView view = new DictionaryView();
             BeanUtils.copyProperties( dictionary , view );//把实体数据重构到view中
 
             //修改对应字典表字段

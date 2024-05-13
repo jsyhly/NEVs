@@ -2,7 +2,6 @@ package com;
 
 import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.entity.ConfigEntity;
 import com.entity.EIException;
 import com.utils.R;
 import org.apache.commons.io.FileUtils;

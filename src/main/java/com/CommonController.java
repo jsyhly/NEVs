@@ -6,7 +6,6 @@ import com.baidu.aip.face.AipFace;
 import com.baidu.aip.face.MatchRequest;
 import com.baidu.aip.util.Base64Util;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.entity.ConfigEntity;
 import com.utils.BaiduUtil;
 import com.utils.FileUtil;
 import com.utils.R;
