@@ -20,3 +20,4 @@ public interface QicheCommentbackDao extends BaseMapper<QicheCommentbackEntity> 
    List<QicheCommentbackView> selectListView(Pagination page,@Param("params")Map<String,Object> params);
 
 }
+
