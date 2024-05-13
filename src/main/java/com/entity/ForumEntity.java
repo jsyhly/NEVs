@@ -1,76 +1,98 @@
-package com.entity.vo;
+package com.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+
 
 /**
  * 论坛
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ *
+ * @author 
+ * @email
  */
 @TableName("forum")
-public class ForumVO implements Serializable {
+public class ForumEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
+	public ForumEntity() {
+
+	}
+
+	public ForumEntity(T t) {
+		try {
+			BeanUtils.copyProperties(this, t);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
     /**
      * 主键
      */
-
+    @TableId(type = IdType.AUTO)
     @TableField(value = "id")
+
     private Integer id;
 
 
     /**
      * 帖子标题
      */
-
     @TableField(value = "forum_name")
+
     private String forumName;
 
 
     /**
      * 用户
      */
-
     @TableField(value = "yonghu_id")
+
     private Integer yonghuId;
 
 
     /**
      * 管理员
      */
-
     @TableField(value = "users_id")
+
     private Integer usersId;
 
 
     /**
      * 发布内容
      */
-
     @TableField(value = "forum_content")
+
     private String forumContent;
 
 
     /**
      * 父id
      */
-
     @TableField(value = "super_ids")
+
     private Integer superIds;
 
 
     /**
      * 帖子状态
      */
-
     @TableField(value = "forum_state_types")
+
     private Integer forumStateTypes;
 
 
@@ -79,8 +101,8 @@ public class ForumVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "insert_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
@@ -89,18 +111,18 @@ public class ForumVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "update_time",fill = FieldFill.UPDATE)
 
-    @TableField(value = "update_time")
     private Date updateTime;
 
 
     /**
-     * 创建时间 show2
+     * 创建时间
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
+    @TableField(value = "create_time",fill = FieldFill.INSERT)
 
-    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -110,8 +132,6 @@ public class ForumVO implements Serializable {
     public Integer getId() {
         return id;
     }
-
-
     /**
 	 * 获取：主键
 	 */
@@ -125,8 +145,6 @@ public class ForumVO implements Serializable {
     public String getForumName() {
         return forumName;
     }
-
-
     /**
 	 * 获取：帖子标题
 	 */
@@ -140,8 +158,6 @@ public class ForumVO implements Serializable {
     public Integer getYonghuId() {
         return yonghuId;
     }
-
-
     /**
 	 * 获取：用户
 	 */
@@ -155,8 +171,6 @@ public class ForumVO implements Serializable {
     public Integer getUsersId() {
         return usersId;
     }
-
-
     /**
 	 * 获取：管理员
 	 */
@@ -170,8 +184,6 @@ public class ForumVO implements Serializable {
     public String getForumContent() {
         return forumContent;
     }
-
-
     /**
 	 * 获取：发布内容
 	 */
@@ -185,8 +197,6 @@ public class ForumVO implements Serializable {
     public Integer getSuperIds() {
         return superIds;
     }
-
-
     /**
 	 * 获取：父id
 	 */
@@ -200,8 +210,6 @@ public class ForumVO implements Serializable {
     public Integer getForumStateTypes() {
         return forumStateTypes;
     }
-
-
     /**
 	 * 获取：帖子状态
 	 */
@@ -215,8 +223,6 @@ public class ForumVO implements Serializable {
     public Date getInsertTime() {
         return insertTime;
     }
-
-
     /**
 	 * 获取：发帖时间
 	 */
@@ -230,8 +236,6 @@ public class ForumVO implements Serializable {
     public Date getUpdateTime() {
         return updateTime;
     }
-
-
     /**
 	 * 获取：修改时间
 	 */
@@ -240,19 +244,32 @@ public class ForumVO implements Serializable {
         this.updateTime = updateTime;
     }
     /**
-	 * 设置：创建时间 show2
+	 * 设置：创建时间
 	 */
     public Date getCreateTime() {
         return createTime;
     }
-
-
     /**
-	 * 获取：创建时间 show2
+	 * 获取：创建时间
 	 */
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
+    @Override
+    public String toString() {
+        return "Forum{" +
+            "id=" + id +
+            ", forumName=" + forumName +
+            ", yonghuId=" + yonghuId +
+            ", usersId=" + usersId +
+            ", forumContent=" + forumContent +
+            ", superIds=" + superIds +
+            ", forumStateTypes=" + forumStateTypes +
+            ", insertTime=" + insertTime +
+            ", updateTime=" + updateTime +
+            ", createTime=" + createTime +
+        "}";
+    }
 }
