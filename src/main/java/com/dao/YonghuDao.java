@@ -20,3 +20,4 @@ public interface YonghuDao extends BaseMapper<YonghuEntity> {
    List<YonghuView> selectListView(Pagination page,@Param("params")Map<String,Object> params);
 
 }
+

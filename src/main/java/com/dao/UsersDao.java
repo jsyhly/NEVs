@@ -21,3 +21,4 @@ public interface UsersDao extends BaseMapper<UsersEntity> {
 	List<UsersEntity> selectListView(Pagination page, @Param("ew") Wrapper<UsersEntity> wrapper);
 	
 }
+
