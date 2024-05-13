@@ -38,3 +38,4 @@ public class YonghuServiceImpl extends ServiceImpl<YonghuDao, YonghuEntity> impl
 
 
 }
+

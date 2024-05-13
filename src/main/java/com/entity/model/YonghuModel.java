@@ -245,3 +245,4 @@ public class YonghuModel implements Serializable {
     }
 
     }
+

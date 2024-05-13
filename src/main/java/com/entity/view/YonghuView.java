@@ -63,5 +63,4 @@ public class YonghuView extends YonghuEntity implements Serializable {
 
 
 
-
 }

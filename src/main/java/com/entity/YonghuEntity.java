@@ -55,6 +55,7 @@ public class YonghuEntity<T> implements Serializable {
     private Integer id;
 
 
+
     /**
      * 账户
      */
