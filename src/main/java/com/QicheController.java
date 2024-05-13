@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.entity.QicheEntity;
 import com.entity.view.QicheView;
-import com.service.DictionaryService;
 import com.service.TokenService;
 import com.service.YonghuService;
 import com.utils.PageUtils;
@@ -73,8 +72,8 @@ public class QicheController {
         PageUtils page = qicheService.queryPage(params);
 
         //字典表数据转换
-        List<QicheView> list =(List<QicheView>)page.getList();
-        for(QicheView c:list){
+        List<com.entity.view.QicheView> list =(List<com.entity.view.QicheView>)page.getList();
+        for(com.entity.view.QicheView c:list){
             //修改对应字典表字段
             dictionaryService.dictionaryConvert(c, request);
         }
@@ -90,7 +89,7 @@ public class QicheController {
         QicheEntity qiche = qicheService.selectById(id);
         if(qiche !=null){
             //entity转view
-            QicheView view = new QicheView();
+            com.entity.view.QicheView view = new com.entity.view.QicheView();
             BeanUtils.copyProperties( qiche , view );//把实体数据重构到view中
 
             //修改对应字典表字段
@@ -271,8 +270,8 @@ public class QicheController {
         PageUtils page = qicheService.queryPage(params);
 
         //字典表数据转换
-        List<QicheView> list =(List<QicheView>)page.getList();
-        for(QicheView c:list)
+        List<com.entity.view.QicheView> list =(List<com.entity.view.QicheView>)page.getList();
+        for(com.entity.view.QicheView c:list)
             dictionaryService.dictionaryConvert(c, request); //修改对应字典表字段
         return R.ok().put("data", page);
     }
@@ -291,7 +290,7 @@ public class QicheController {
                 qicheService.updateById(qiche);
 
                 //entity转view
-                QicheView view = new QicheView();
+                com.entity.view.QicheView view = new QicheView();
                 BeanUtils.copyProperties( qiche , view );//把实体数据重构到view中
 
                 //修改对应字典表字段

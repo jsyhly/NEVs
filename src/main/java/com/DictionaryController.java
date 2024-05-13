@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.entity.DictionaryEntity;
 import com.entity.view.DictionaryView;
-import com.service.DictionaryService;
 import com.service.TokenService;
 import com.service.YonghuService;
 import com.utils.PageUtils;

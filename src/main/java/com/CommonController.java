@@ -7,8 +7,6 @@ import com.baidu.aip.face.MatchRequest;
 import com.baidu.aip.util.Base64Util;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.entity.ConfigEntity;
-import com.service.CommonService;
-import com.service.ConfigService;
 import com.utils.BaiduUtil;
 import com.utils.FileUtil;
 import com.utils.R;
