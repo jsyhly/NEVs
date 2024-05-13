@@ -1,11 +1,10 @@
-package com.service.impl;
+package com.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.dao.QicheShijiaDao;
 import com.entity.QicheShijiaEntity;
 import com.entity.view.QicheShijiaView;
-import com.service.QicheShijiaService;
 import com.utils.PageUtils;
 import com.utils.Query;
 import org.springframework.stereotype.Service;

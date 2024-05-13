@@ -1,16 +1,16 @@
-package com.service.impl;
+package com.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.entity.QicheShijiaEntity;
+import com.entity.ForumEntity;
 import com.utils.PageUtils;
 
 import java.util.Map;
 
 
 /**
- * 汽车试驾预定 服务类
+ * 论坛 服务类
  */
-public interface QicheShijiaService extends IService<QicheShijiaEntity> {
+public interface ForumService extends IService<ForumEntity> {
 
     /**
     * @param params 查询参数
