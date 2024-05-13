@@ -18,7 +18,6 @@ public class QicheOrderModel implements Serializable {
 
 
 
-
     /**
      * 主键
      */

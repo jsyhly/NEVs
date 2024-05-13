@@ -20,3 +20,4 @@ public interface QicheOrderDao extends BaseMapper<QicheOrderEntity> {
    List<QicheOrderView> selectListView(Pagination page,@Param("params")Map<String,Object> params);
 
 }
+

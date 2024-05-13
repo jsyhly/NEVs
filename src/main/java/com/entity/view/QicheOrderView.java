@@ -533,5 +533,4 @@ public class QicheOrderView extends QicheOrderEntity implements Serializable {
 
 
 
-
 }
