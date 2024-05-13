@@ -18,3 +18,4 @@ public interface YonghuService extends IService<YonghuEntity> {
     */
      PageUtils queryPage(Map<String, Object> params);
 }
+
