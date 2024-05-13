@@ -23,4 +23,3 @@ public interface UsersService extends IService<UsersEntity> {
    	PageUtils queryPage(Map<String, Object> params, Wrapper<UsersEntity> wrapper);
 	   	
 }
-
