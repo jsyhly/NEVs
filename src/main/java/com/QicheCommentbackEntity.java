@@ -1,4 +1,4 @@
-package com.entity;
+package com;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -13,23 +13,23 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
-
 /**
- * 论坛
+ *
+ * 汽车评价
  *
  * @author 
  * @email
  */
-@TableName("forum")
-public class ForumEntity<T> implements Serializable {
+@TableName("qiche_commentback")
+public class QicheCommentbackEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
-	public ForumEntity() {
+	public QicheCommentbackEntity() {
 
 	}
 
-	public ForumEntity(T t) {
+	public QicheCommentbackEntity(T t) {
 		try {
 			BeanUtils.copyProperties(this, t);
 		} catch (IllegalAccessException | InvocationTargetException e) {
@@ -49,11 +49,11 @@ public class ForumEntity<T> implements Serializable {
 
 
     /**
-     * 帖子标题
+     * 汽车
      */
-    @TableField(value = "forum_name")
+    @TableField(value = "qiche_id")
 
-    private String forumName;
+    private Integer qicheId;
 
 
     /**
@@ -65,39 +65,15 @@ public class ForumEntity<T> implements Serializable {
 
 
     /**
-     * 管理员
+     * 评价内容
      */
-    @TableField(value = "users_id")
+    @TableField(value = "qiche_commentback_text")
 
-    private Integer usersId;
+    private String qicheCommentbackText;
 
 
     /**
-     * 发布内容
-     */
-    @TableField(value = "forum_content")
-
-    private String forumContent;
-
-
-    /**
-     * 父id
-     */
-    @TableField(value = "super_ids")
-
-    private Integer superIds;
-
-
-    /**
-     * 帖子状态
-     */
-    @TableField(value = "forum_state_types")
-
-    private Integer forumStateTypes;
-
-
-    /**
-     * 发帖时间
+     * 评价时间
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
@@ -107,7 +83,15 @@ public class ForumEntity<T> implements Serializable {
 
 
     /**
-     * 修改时间
+     * 回复内容
+     */
+    @TableField(value = "reply_text")
+
+    private String replyText;
+
+
+    /**
+     * 回复时间
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
@@ -140,17 +124,17 @@ public class ForumEntity<T> implements Serializable {
         this.id = id;
     }
     /**
-	 * 设置：帖子标题
+	 * 设置：汽车
 	 */
-    public String getForumName() {
-        return forumName;
+    public Integer getQicheId() {
+        return qicheId;
     }
     /**
-	 * 获取：帖子标题
+	 * 获取：汽车
 	 */
 
-    public void setForumName(String forumName) {
-        this.forumName = forumName;
+    public void setQicheId(Integer qicheId) {
+        this.qicheId = qicheId;
     }
     /**
 	 * 设置：用户
@@ -166,78 +150,52 @@ public class ForumEntity<T> implements Serializable {
         this.yonghuId = yonghuId;
     }
     /**
-	 * 设置：管理员
+	 * 设置：评价内容
 	 */
-    public Integer getUsersId() {
-        return usersId;
+    public String getQicheCommentbackText() {
+        return qicheCommentbackText;
     }
     /**
-	 * 获取：管理员
-	 */
-
-    public void setUsersId(Integer usersId) {
-        this.usersId = usersId;
-    }
-    /**
-	 * 设置：发布内容
-	 */
-    public String getForumContent() {
-        return forumContent;
-    }
-    /**
-	 * 获取：发布内容
+	 * 获取：评价内容
 	 */
 
-    public void setForumContent(String forumContent) {
-        this.forumContent = forumContent;
+    public void setQicheCommentbackText(String qicheCommentbackText) {
+        this.qicheCommentbackText = qicheCommentbackText;
     }
     /**
-	 * 设置：父id
-	 */
-    public Integer getSuperIds() {
-        return superIds;
-    }
-    /**
-	 * 获取：父id
-	 */
-
-    public void setSuperIds(Integer superIds) {
-        this.superIds = superIds;
-    }
-    /**
-	 * 设置：帖子状态
-	 */
-    public Integer getForumStateTypes() {
-        return forumStateTypes;
-    }
-    /**
-	 * 获取：帖子状态
-	 */
-
-    public void setForumStateTypes(Integer forumStateTypes) {
-        this.forumStateTypes = forumStateTypes;
-    }
-    /**
-	 * 设置：发帖时间
+	 * 设置：评价时间
 	 */
     public Date getInsertTime() {
         return insertTime;
     }
     /**
-	 * 获取：发帖时间
+	 * 获取：评价时间
 	 */
 
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
     /**
-	 * 设置：修改时间
+	 * 设置：回复内容
+	 */
+    public String getReplyText() {
+        return replyText;
+    }
+    /**
+	 * 获取：回复内容
+	 */
+
+    public void setReplyText(String replyText) {
+        this.replyText = replyText;
+    }
+    /**
+	 * 设置：回复时间
 	 */
     public Date getUpdateTime() {
         return updateTime;
     }
     /**
-	 * 获取：修改时间
+	 * 获取：回复时间
 	 */
 
     public void setUpdateTime(Date updateTime) {
@@ -259,15 +217,13 @@ public class ForumEntity<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "Forum{" +
+        return "QicheCommentback{" +
             "id=" + id +
-            ", forumName=" + forumName +
+            ", qicheId=" + qicheId +
             ", yonghuId=" + yonghuId +
-            ", usersId=" + usersId +
-            ", forumContent=" + forumContent +
-            ", superIds=" + superIds +
-            ", forumStateTypes=" + forumStateTypes +
+            ", qicheCommentbackText=" + qicheCommentbackText +
             ", insertTime=" + insertTime +
+            ", replyText=" + replyText +
             ", updateTime=" + updateTime +
             ", createTime=" + createTime +
         "}";

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
+
 /**
  * 收货地址
  * 接收传参的实体类

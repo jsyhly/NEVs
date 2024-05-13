@@ -1,4 +1,4 @@
-package com.entity.view;
+package com;
 
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.entity.ForumEntity;

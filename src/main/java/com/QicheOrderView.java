@@ -1,28 +1,58 @@
-package com.entity.view;
-
+package com;
 
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.entity.QicheShijiaEntity;
+import com.entity.QicheOrderEntity;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
+
 /**
- * 汽车试驾预定
+ * 汽车订单
  * 后端返回视图实体辅助类
  * （通常后端关联的表或者自定义的字段需要返回使用）
  */
-@TableName("qiche_shijia")
-public class QicheShijiaView extends QicheShijiaEntity implements Serializable {
+@TableName("qiche_order")
+public class QicheOrderView extends QicheOrderEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
 		/**
-		* 预定审核的值
+		* 订单类型的值
 		*/
-		private String qicheShijiaOrderYesnoValue;
+		private String qicheOrderValue;
+		/**
+		* 支付类型的值
+		*/
+		private String qicheOrderPaymentValue;
 
 
+
+		//级联表 address
+			/**
+			* 收货地址 的 创建用户
+			*/
+			private Integer addressYonghuId;
+			/**
+			* 收货人
+			*/
+			private String addressName;
+			/**
+			* 电话
+			*/
+			private String addressPhone;
+			/**
+			* 地址
+			*/
+			private String addressDizhi;
+			/**
+			* 是否默认地址
+			*/
+			private Integer isdefaultTypes;
+				/**
+				* 是否默认地址的值
+				*/
+				private String isdefaultValue;
 
 		//级联表 qiche
 			/**
@@ -100,13 +130,13 @@ public class QicheShijiaView extends QicheShijiaEntity implements Serializable {
 			*/
 			private Double newMoney;
 
-	public QicheShijiaView() {
+	public QicheOrderView() {
 
 	}
 
-	public QicheShijiaView(QicheShijiaEntity qicheShijiaEntity) {
+	public QicheOrderView(QicheOrderEntity qicheOrderEntity) {
 		try {
-			BeanUtils.copyProperties(this, qicheShijiaEntity);
+			BeanUtils.copyProperties(this, qicheOrderEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,17 +146,116 @@ public class QicheShijiaView extends QicheShijiaEntity implements Serializable {
 
 
 			/**
-			* 获取： 预定审核的值
+			* 获取： 订单类型的值
 			*/
-			public String getQicheShijiaOrderYesnoValue() {
-				return qicheShijiaOrderYesnoValue;
+			public String getQicheOrderValue() {
+				return qicheOrderValue;
 			}
 			/**
-			* 设置： 预定审核的值
+			* 设置： 订单类型的值
 			*/
-			public void setQicheShijiaOrderYesnoValue(String qicheShijiaOrderYesnoValue) {
-				this.qicheShijiaOrderYesnoValue = qicheShijiaOrderYesnoValue;
+			public void setQicheOrderValue(String qicheOrderValue) {
+				this.qicheOrderValue = qicheOrderValue;
 			}
+			/**
+			* 获取： 支付类型的值
+			*/
+			public String getQicheOrderPaymentValue() {
+				return qicheOrderPaymentValue;
+			}
+			/**
+			* 设置： 支付类型的值
+			*/
+			public void setQicheOrderPaymentValue(String qicheOrderPaymentValue) {
+				this.qicheOrderPaymentValue = qicheOrderPaymentValue;
+			}
+
+
+
+
+				//级联表的get和set address
+
+					/**
+					* 获取：收货地址 的 创建用户
+					*/
+					public Integer getAddressYonghuId() {
+						return addressYonghuId;
+					}
+					/**
+					* 设置：收货地址 的 创建用户
+					*/
+					public void setAddressYonghuId(Integer addressYonghuId) {
+						this.addressYonghuId = addressYonghuId;
+					}
+
+
+					/**
+					* 获取： 收货人
+					*/
+					public String getAddressName() {
+						return addressName;
+					}
+					/**
+					* 设置： 收货人
+					*/
+					public void setAddressName(String addressName) {
+						this.addressName = addressName;
+					}
+
+					/**
+					* 获取： 电话
+					*/
+					public String getAddressPhone() {
+						return addressPhone;
+					}
+					/**
+					* 设置： 电话
+					*/
+					public void setAddressPhone(String addressPhone) {
+						this.addressPhone = addressPhone;
+					}
+
+					/**
+					* 获取： 地址
+					*/
+					public String getAddressDizhi() {
+						return addressDizhi;
+					}
+					/**
+					* 设置： 地址
+					*/
+					public void setAddressDizhi(String addressDizhi) {
+						this.addressDizhi = addressDizhi;
+					}
+
+					/**
+					* 获取： 是否默认地址
+					*/
+					public Integer getIsdefaultTypes() {
+						return isdefaultTypes;
+					}
+					/**
+					* 设置： 是否默认地址
+					*/
+					public void setIsdefaultTypes(Integer isdefaultTypes) {
+						this.isdefaultTypes = isdefaultTypes;
+					}
+
+
+						/**
+						* 获取： 是否默认地址的值
+						*/
+						public String getIsdefaultValue() {
+							return isdefaultValue;
+						}
+						/**
+						* 设置： 是否默认地址的值
+						*/
+						public void setIsdefaultValue(String isdefaultValue) {
+							this.isdefaultValue = isdefaultValue;
+						}
+
+
 
 
 
@@ -318,6 +447,10 @@ public class QicheShijiaView extends QicheShijiaEntity implements Serializable {
 
 
 
+
+
+
+
 				//级联表的get和set yonghu
 
 					/**
@@ -397,6 +530,7 @@ public class QicheShijiaView extends QicheShijiaEntity implements Serializable {
 					public void setNewMoney(Double newMoney) {
 						this.newMoney = newMoney;
 					}
+
 
 
 

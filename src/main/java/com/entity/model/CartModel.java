@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 
+
 /**
  * 购物车
  * 接收传参的实体类

@@ -1,13 +1,11 @@
 package com.entity.view;
 
-import com.entity.QicheOrderEntity;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.entity.QicheOrderEntity;
 import org.apache.commons.beanutils.BeanUtils;
-import java.lang.reflect.InvocationTargetException;
-import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
-import java.util.Date;
+import java.lang.reflect.InvocationTargetException;
 
 
 /**
