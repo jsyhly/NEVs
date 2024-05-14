@@ -1,5 +1,6 @@
 package com.entity.vo;
 
+import com.entity.ForumEntity;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
