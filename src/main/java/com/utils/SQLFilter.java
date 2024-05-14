@@ -1,6 +1,7 @@
 
 package com.utils;
 
+import com.entity.EIException;
 import org.apache.commons.lang3.StringUtils;
 
 

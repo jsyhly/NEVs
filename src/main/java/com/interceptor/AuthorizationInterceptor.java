@@ -1,21 +1,19 @@
 package com.interceptor;
 
-import java.io.PrintWriter;
-
 import com.alibaba.fastjson.JSONObject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.annotation.IgnoreAuth;
 import com.entity.TokenEntity;
 import com.service.TokenService;
+import com.utils.R;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.annotation.IgnoreAuth;
-import com.utils.R;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * 权限(Token)验证
