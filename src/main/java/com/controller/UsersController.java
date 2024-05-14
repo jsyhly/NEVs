@@ -2,28 +2,20 @@
 package com.controller;
 
 
-
-import java.util.Arrays;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.service.UsersService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.entity.UsersEntity;
+import com.service.TokenService;
+import com.service.UsersService;
 import com.utils.MPUtil;
 import com.utils.PageUtils;
 import com.utils.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.Map;
 
 /**
  * 登录相关

@@ -1,8 +1,8 @@
 package com.model.enums;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.enums.IEnum;
+
+import java.io.Serializable;
 
 
 /**

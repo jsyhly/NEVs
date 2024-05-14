@@ -2,12 +2,12 @@
 package com.utils;
 
 
-
-import java.util.Set;
+import com.entity.EIException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.util.Set;
 
 /**
  * hibernate-validator校验工具类

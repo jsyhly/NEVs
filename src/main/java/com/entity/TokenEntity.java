@@ -117,7 +117,7 @@ public class TokenEntity implements Serializable {
 		this.username = username;
 	}
 
-	public TokenEntity(Integer userid, String username, String tablename, String role, String token, Date expiratedtime) {
+	public TokenEntity(Integer userid, String username, String tablename,String role, String token, Date expiratedtime) {
 		super();
 		this.userid = userid;
 		this.username = username;
