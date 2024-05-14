@@ -1,5 +1,5 @@
 
-package com;
+package com.entity.vo;
 
 import com.alibaba.fastjson.JSONObject;
 import com.annotation.IgnoreAuth;
@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.entity.NewsEntity;
 import com.entity.view.NewsView;
+import com.service.DictionaryService;
 import com.service.TokenService;
 import com.service.YonghuService;
 import com.utils.PageUtils;
@@ -85,7 +86,7 @@ public class NewsController {
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id, HttpServletRequest request){
         logger.debug("info方法:,,Controller:{},,id:{}",this.getClass().getName(),id);
-        com.entity.NewsEntity news = newsService.selectById(id);
+        NewsEntity news = newsService.selectById(id);
         if(news !=null){
             //entity转view
             NewsView view = new NewsView();
@@ -104,20 +105,20 @@ public class NewsController {
     * 后端保存
     */
     @RequestMapping("/save")
-    public R save(@RequestBody com.entity.NewsEntity news, HttpServletRequest request){
+    public R save(@RequestBody NewsEntity news, HttpServletRequest request){
         logger.debug("save方法:,,Controller:{},,news:{}",this.getClass().getName(),news.toString());
 
         String role = String.valueOf(request.getSession().getAttribute("role"));
         if(false)
             return R.error(511,"永远不会进入");
 
-        Wrapper<com.entity.NewsEntity> queryWrapper = new EntityWrapper<com.entity.NewsEntity>()
+        Wrapper<NewsEntity> queryWrapper = new EntityWrapper<NewsEntity>()
             .eq("news_name", news.getNewsName())
             .eq("news_types", news.getNewsTypes())
             ;
 
         logger.info("sql语句:"+queryWrapper.getSqlSegment());
-        com.entity.NewsEntity newsEntity = newsService.selectOne(queryWrapper);
+        NewsEntity newsEntity = newsService.selectOne(queryWrapper);
         if(newsEntity==null){
             news.setInsertTime(new Date());
             news.setCreateTime(new Date());
@@ -132,14 +133,14 @@ public class NewsController {
     * 后端修改
     */
     @RequestMapping("/update")
-    public R update(@RequestBody com.entity.NewsEntity news, HttpServletRequest request){
+    public R update(@RequestBody NewsEntity news, HttpServletRequest request){
         logger.debug("update方法:,,Controller:{},,news:{}",this.getClass().getName(),news.toString());
 
         String role = String.valueOf(request.getSession().getAttribute("role"));
 //        if(false)
 //            return R.error(511,"永远不会进入");
         //根据字段查询是否有相同数据
-        Wrapper<com.entity.NewsEntity> queryWrapper = new EntityWrapper<com.entity.NewsEntity>()
+        Wrapper<NewsEntity> queryWrapper = new EntityWrapper<NewsEntity>()
             .notIn("id",news.getId())
             .andNew()
             .eq("news_name", news.getNewsName())
@@ -147,7 +148,7 @@ public class NewsController {
             ;
 
         logger.info("sql语句:"+queryWrapper.getSqlSegment());
-        com.entity.NewsEntity newsEntity = newsService.selectOne(queryWrapper);
+        NewsEntity newsEntity = newsService.selectOne(queryWrapper);
         if("".equals(news.getNewsPhoto()) || "null".equals(news.getNewsPhoto())){
                 news.setNewsPhoto(null);
         }
@@ -181,7 +182,7 @@ public class NewsController {
         Integer yonghuId = Integer.valueOf(String.valueOf(request.getSession().getAttribute("userId")));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            List<com.entity.NewsEntity> newsList = new ArrayList<>();//上传的东西
+            List<NewsEntity> newsList = new ArrayList<>();//上传的东西
             Map<String, List<String>> seachFields= new HashMap<>();//要查询的字段
             Date date = new Date();
             int lastIndexOf = fileName.lastIndexOf(".");
@@ -201,7 +202,7 @@ public class NewsController {
                         dataList.remove(0);//删除第一行，因为第一行是提示
                         for(List<String> data:dataList){
                             //循环
-                            com.entity.NewsEntity newsEntity = new com.entity.NewsEntity();
+                            NewsEntity newsEntity = new NewsEntity();
 //                            newsEntity.setNewsName(data.get(0));                    //公告标题 要改的
 //                            newsEntity.setNewsTypes(Integer.valueOf(data.get(0)));   //公告类型 要改的
 //                            newsEntity.setNewsPhoto("");//详情和图片
@@ -257,7 +258,7 @@ public class NewsController {
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id, HttpServletRequest request){
         logger.debug("detail方法:,,Controller:{},,id:{}",this.getClass().getName(),id);
-        com.entity.NewsEntity news = newsService.selectById(id);
+        NewsEntity news = newsService.selectById(id);
             if(news !=null){
 
 
@@ -278,9 +279,9 @@ public class NewsController {
     * 前端保存
     */
     @RequestMapping("/add")
-    public R add(@RequestBody com.entity.NewsEntity news, HttpServletRequest request){
+    public R add(@RequestBody NewsEntity news, HttpServletRequest request){
         logger.debug("add方法:,,Controller:{},,news:{}",this.getClass().getName(),news.toString());
-        Wrapper<com.entity.NewsEntity> queryWrapper = new EntityWrapper<com.entity.NewsEntity>()
+        Wrapper<NewsEntity> queryWrapper = new EntityWrapper<NewsEntity>()
             .eq("news_name", news.getNewsName())
             .eq("news_types", news.getNewsTypes())
             ;

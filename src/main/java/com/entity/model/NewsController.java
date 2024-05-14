@@ -1,12 +1,13 @@
 
-package com;
+package com.entity.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.annotation.IgnoreAuth;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.entity.QicheEntity;
-import com.entity.view.QicheView;
+import com.entity.NewsEntity;
+import com.entity.view.NewsView;
+import com.service.DictionaryService;
 import com.service.TokenService;
 import com.service.YonghuService;
 import com.utils.PageUtils;
@@ -28,19 +29,19 @@ import java.util.*;
 
 
 /**
- * 汽车
+ * 公告信息
  * 后端接口
  * @author
  * @email
 */
 @RestController
 @Controller
-@RequestMapping("/qiche")
-public class QicheController {
-    private static final Logger logger = LoggerFactory.getLogger(QicheController.class);
+@RequestMapping("/news")
+public class NewsController {
+    private static final Logger logger = LoggerFactory.getLogger(NewsController.class);
 
     @Autowired
-    private QicheService qicheService;
+    private NewsService newsService;
 
 
     @Autowired
@@ -65,15 +66,14 @@ public class QicheController {
             return R.error(511,"永不会进入");
         else if("用户".equals(role))
             params.put("yonghuId",request.getSession().getAttribute("userId"));
-        params.put("qicheDeleteStart",1);params.put("qicheDeleteEnd",1);
         if(params.get("orderBy")==null || params.get("orderBy")==""){
             params.put("orderBy","id");
         }
-        PageUtils page = qicheService.queryPage(params);
+        PageUtils page = newsService.queryPage(params);
 
         //字典表数据转换
-        List<com.entity.view.QicheView> list =(List<com.entity.view.QicheView>)page.getList();
-        for(com.entity.view.QicheView c:list){
+        List<NewsView> list =(List<NewsView>)page.getList();
+        for(NewsView c:list){
             //修改对应字典表字段
             dictionaryService.dictionaryConvert(c, request);
         }
@@ -86,11 +86,11 @@ public class QicheController {
     @RequestMapping("/info/{id}")
     public R info(@PathVariable("id") Long id, HttpServletRequest request){
         logger.debug("info方法:,,Controller:{},,id:{}",this.getClass().getName(),id);
-        QicheEntity qiche = qicheService.selectById(id);
-        if(qiche !=null){
+        NewsEntity news = newsService.selectById(id);
+        if(news !=null){
             //entity转view
-            com.entity.view.QicheView view = new com.entity.view.QicheView();
-            BeanUtils.copyProperties( qiche , view );//把实体数据重构到view中
+            NewsView view = new NewsView();
+            BeanUtils.copyProperties( news , view );//把实体数据重构到view中
 
             //修改对应字典表字段
             dictionaryService.dictionaryConvert(view, request);
@@ -105,30 +105,24 @@ public class QicheController {
     * 后端保存
     */
     @RequestMapping("/save")
-    public R save(@RequestBody QicheEntity qiche, HttpServletRequest request){
-        logger.debug("save方法:,,Controller:{},,qiche:{}",this.getClass().getName(),qiche.toString());
+    public R save(@RequestBody NewsEntity news, HttpServletRequest request){
+        logger.debug("save方法:,,Controller:{},,news:{}",this.getClass().getName(),news.toString());
 
         String role = String.valueOf(request.getSession().getAttribute("role"));
         if(false)
             return R.error(511,"永远不会进入");
 
-        Wrapper<QicheEntity> queryWrapper = new EntityWrapper<QicheEntity>()
-            .eq("qiche_name", qiche.getQicheName())
-            .eq("qiche_types", qiche.getQicheTypes())
-            .eq("qiche_kucun_number", qiche.getQicheKucunNumber())
-            .eq("qiche_clicknum", qiche.getQicheClicknum())
-            .eq("shangxia_types", qiche.getShangxiaTypes())
-            .eq("qiche_delete", qiche.getQicheDelete())
+        Wrapper<NewsEntity> queryWrapper = new EntityWrapper<NewsEntity>()
+            .eq("news_name", news.getNewsName())
+            .eq("news_types", news.getNewsTypes())
             ;
 
         logger.info("sql语句:"+queryWrapper.getSqlSegment());
-        QicheEntity qicheEntity = qicheService.selectOne(queryWrapper);
-        if(qicheEntity==null){
-            qiche.setQicheClicknum(1);
-            qiche.setShangxiaTypes(1);
-            qiche.setQicheDelete(1);
-            qiche.setCreateTime(new Date());
-            qicheService.insert(qiche);
+        NewsEntity newsEntity = newsService.selectOne(queryWrapper);
+        if(newsEntity==null){
+            news.setInsertTime(new Date());
+            news.setCreateTime(new Date());
+            newsService.insert(news);
             return R.ok();
         }else {
             return R.error(511,"表中有相同数据");
@@ -139,31 +133,27 @@ public class QicheController {
     * 后端修改
     */
     @RequestMapping("/update")
-    public R update(@RequestBody QicheEntity qiche, HttpServletRequest request){
-        logger.debug("update方法:,,Controller:{},,qiche:{}",this.getClass().getName(),qiche.toString());
+    public R update(@RequestBody NewsEntity news, HttpServletRequest request){
+        logger.debug("update方法:,,Controller:{},,news:{}",this.getClass().getName(),news.toString());
 
         String role = String.valueOf(request.getSession().getAttribute("role"));
 //        if(false)
 //            return R.error(511,"永远不会进入");
         //根据字段查询是否有相同数据
-        Wrapper<QicheEntity> queryWrapper = new EntityWrapper<QicheEntity>()
-            .notIn("id",qiche.getId())
+        Wrapper<NewsEntity> queryWrapper = new EntityWrapper<NewsEntity>()
+            .notIn("id",news.getId())
             .andNew()
-            .eq("qiche_name", qiche.getQicheName())
-            .eq("qiche_types", qiche.getQicheTypes())
-            .eq("qiche_kucun_number", qiche.getQicheKucunNumber())
-            .eq("qiche_clicknum", qiche.getQicheClicknum())
-            .eq("shangxia_types", qiche.getShangxiaTypes())
-            .eq("qiche_delete", qiche.getQicheDelete())
+            .eq("news_name", news.getNewsName())
+            .eq("news_types", news.getNewsTypes())
             ;
 
         logger.info("sql语句:"+queryWrapper.getSqlSegment());
-        QicheEntity qicheEntity = qicheService.selectOne(queryWrapper);
-        if("".equals(qiche.getQichePhoto()) || "null".equals(qiche.getQichePhoto())){
-                qiche.setQichePhoto(null);
+        NewsEntity newsEntity = newsService.selectOne(queryWrapper);
+        if("".equals(news.getNewsPhoto()) || "null".equals(news.getNewsPhoto())){
+                news.setNewsPhoto(null);
         }
-        if(qicheEntity==null){
-            qicheService.updateById(qiche);//根据id更新
+        if(newsEntity==null){
+            newsService.updateById(news);//根据id更新
             return R.ok();
         }else {
             return R.error(511,"表中有相同数据");
@@ -178,16 +168,7 @@ public class QicheController {
     @RequestMapping("/delete")
     public R delete(@RequestBody Integer[] ids){
         logger.debug("delete:,,Controller:{},,ids:{}",this.getClass().getName(),ids.toString());
-        ArrayList<QicheEntity> list = new ArrayList<>();
-        for(Integer id:ids){
-            QicheEntity qicheEntity = new QicheEntity();
-            qicheEntity.setId(id);
-            qicheEntity.setQicheDelete(2);
-            list.add(qicheEntity);
-        }
-        if(list != null && list.size() >0){
-            qicheService.updateBatchById(list);
-        }
+        newsService.deleteBatchIds(Arrays.asList(ids));
         return R.ok();
     }
 
@@ -201,7 +182,7 @@ public class QicheController {
         Integer yonghuId = Integer.valueOf(String.valueOf(request.getSession().getAttribute("userId")));
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            List<QicheEntity> qicheList = new ArrayList<>();//上传的东西
+            List<NewsEntity> newsList = new ArrayList<>();//上传的东西
             Map<String, List<String>> seachFields= new HashMap<>();//要查询的字段
             Date date = new Date();
             int lastIndexOf = fileName.lastIndexOf(".");
@@ -221,26 +202,21 @@ public class QicheController {
                         dataList.remove(0);//删除第一行，因为第一行是提示
                         for(List<String> data:dataList){
                             //循环
-                            QicheEntity qicheEntity = new QicheEntity();
-//                            qicheEntity.setQicheName(data.get(0));                    //汽车名称 要改的
-//                            qicheEntity.setQichePhoto("");//详情和图片
-//                            qicheEntity.setQicheTypes(Integer.valueOf(data.get(0)));   //汽车类型 要改的
-//                            qicheEntity.setQicheKucunNumber(Integer.valueOf(data.get(0)));   //汽车库存 要改的
-//                            qicheEntity.setQicheOldMoney(data.get(0));                    //汽车原价 要改的
-//                            qicheEntity.setQicheNewMoney(data.get(0));                    //现价 要改的
-//                            qicheEntity.setQicheClicknum(Integer.valueOf(data.get(0)));   //点击次数 要改的
-//                            qicheEntity.setShangxiaTypes(Integer.valueOf(data.get(0)));   //是否上架 要改的
-//                            qicheEntity.setQicheDelete(1);//逻辑删除字段
-//                            qicheEntity.setQicheContent("");//详情和图片
-//                            qicheEntity.setCreateTime(date);//时间
-                            qicheList.add(qicheEntity);
+                            NewsEntity newsEntity = new NewsEntity();
+//                            newsEntity.setNewsName(data.get(0));                    //公告标题 要改的
+//                            newsEntity.setNewsTypes(Integer.valueOf(data.get(0)));   //公告类型 要改的
+//                            newsEntity.setNewsPhoto("");//详情和图片
+//                            newsEntity.setInsertTime(date);//时间
+//                            newsEntity.setNewsContent("");//详情和图片
+//                            newsEntity.setCreateTime(date);//时间
+                            newsList.add(newsEntity);
 
 
                             //把要查询是否重复的字段放入map中
                         }
 
                         //查询是否重复
-                        qicheService.insertBatch(qicheList);
+                        newsService.insertBatch(newsList);
                         return R.ok();
                     }
                 }
@@ -267,11 +243,11 @@ public class QicheController {
         if(StringUtil.isEmpty(String.valueOf(params.get("orderBy")))){
             params.put("orderBy","id");
         }
-        PageUtils page = qicheService.queryPage(params);
+        PageUtils page = newsService.queryPage(params);
 
         //字典表数据转换
-        List<com.entity.view.QicheView> list =(List<com.entity.view.QicheView>)page.getList();
-        for(com.entity.view.QicheView c:list)
+        List<NewsView> list =(List<NewsView>)page.getList();
+        for(NewsView c:list)
             dictionaryService.dictionaryConvert(c, request); //修改对应字典表字段
         return R.ok().put("data", page);
     }
@@ -282,16 +258,13 @@ public class QicheController {
     @RequestMapping("/detail/{id}")
     public R detail(@PathVariable("id") Long id, HttpServletRequest request){
         logger.debug("detail方法:,,Controller:{},,id:{}",this.getClass().getName(),id);
-        QicheEntity qiche = qicheService.selectById(id);
-            if(qiche !=null){
+        NewsEntity news = newsService.selectById(id);
+            if(news !=null){
 
-                //点击数量加1
-                qiche.setQicheClicknum(qiche.getQicheClicknum()+1);
-                qicheService.updateById(qiche);
 
                 //entity转view
-                com.entity.view.QicheView view = new QicheView();
-                BeanUtils.copyProperties( qiche , view );//把实体数据重构到view中
+                NewsView view = new NewsView();
+                BeanUtils.copyProperties( news , view );//把实体数据重构到view中
 
                 //修改对应字典表字段
                 dictionaryService.dictionaryConvert(view, request);
@@ -306,22 +279,18 @@ public class QicheController {
     * 前端保存
     */
     @RequestMapping("/add")
-    public R add(@RequestBody QicheEntity qiche, HttpServletRequest request){
-        logger.debug("add方法:,,Controller:{},,qiche:{}",this.getClass().getName(),qiche.toString());
-        Wrapper<QicheEntity> queryWrapper = new EntityWrapper<QicheEntity>()
-            .eq("qiche_name", qiche.getQicheName())
-            .eq("qiche_types", qiche.getQicheTypes())
-            .eq("qiche_kucun_number", qiche.getQicheKucunNumber())
-            .eq("qiche_clicknum", qiche.getQicheClicknum())
-            .eq("shangxia_types", qiche.getShangxiaTypes())
-            .eq("qiche_delete", qiche.getQicheDelete())
+    public R add(@RequestBody NewsEntity news, HttpServletRequest request){
+        logger.debug("add方法:,,Controller:{},,news:{}",this.getClass().getName(),news.toString());
+        Wrapper<NewsEntity> queryWrapper = new EntityWrapper<NewsEntity>()
+            .eq("news_name", news.getNewsName())
+            .eq("news_types", news.getNewsTypes())
             ;
         logger.info("sql语句:"+queryWrapper.getSqlSegment());
-        QicheEntity qicheEntity = qicheService.selectOne(queryWrapper);
-        if(qicheEntity==null){
-            qiche.setQicheDelete(1);
-            qiche.setCreateTime(new Date());
-        qicheService.insert(qiche);
+        NewsEntity newsEntity = newsService.selectOne(queryWrapper);
+        if(newsEntity==null){
+            news.setInsertTime(new Date());
+            news.setCreateTime(new Date());
+        newsService.insert(news);
             return R.ok();
         }else {
             return R.error(511,"表中有相同数据");

@@ -1,5 +1,5 @@
 
-package com;
+package com.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.annotation.IgnoreAuth;
@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.entity.DictionaryEntity;
 import com.entity.view.DictionaryView;
+import com.service.DictionaryService;
 import com.service.TokenService;
 import com.service.YonghuService;
 import com.utils.PageUtils;
@@ -65,8 +66,8 @@ public class DictionaryController {
         PageUtils page = dictionaryService.queryPage(params);
 
         //字典表数据转换
-        List<com.entity.view.DictionaryView> list =(List<com.entity.view.DictionaryView>)page.getList();
-        for(com.entity.view.DictionaryView c:list){
+        List<DictionaryView> list =(List<DictionaryView>)page.getList();
+        for(DictionaryView c:list){
             //修改对应字典表字段
             dictionaryService.dictionaryConvert(c, request);
         }
@@ -82,7 +83,7 @@ public class DictionaryController {
         DictionaryEntity dictionary = dictionaryService.selectById(id);
         if(dictionary !=null){
             //entity转view
-            com.entity.view.DictionaryView view = new DictionaryView();
+            DictionaryView view = new DictionaryView();
             BeanUtils.copyProperties( dictionary , view );//把实体数据重构到view中
 
             //修改对应字典表字段
