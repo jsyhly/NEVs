@@ -1,31 +1,39 @@
 package com.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.alibaba.fastjson.JSON;
-import com.annotation.IgnoreAuth;
-import com.baidu.aip.face.AipFace;
-import com.baidu.aip.face.MatchRequest;
-import com.baidu.aip.util.Base64Util;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.entity.ConfigEntity;
-import com.service.CommonService;
-import com.service.ConfigService;
-import com.utils.BaiduUtil;
-import com.utils.FileUtil;
-import com.utils.R;
 import com.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.annotation.IgnoreAuth;
+import com.baidu.aip.face.AipFace;
+import com.baidu.aip.face.MatchRequest;
+import com.baidu.aip.util.Base64Util;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.entity.ConfigEntity;
+import com.service.CommonService;
+import com.service.ConfigService;
+import com.utils.BaiduUtil;
+import com.utils.FileUtil;
+import com.utils.R;
 
 
 /**

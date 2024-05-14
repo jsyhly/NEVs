@@ -1,17 +1,21 @@
 package com.service.impl;
 
+import com.utils.StringUtil;
+import org.springframework.stereotype.Service;
+import java.lang.reflect.Field;
+import java.util.*;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.dao.QicheOrderDao;
-import com.entity.QicheOrderEntity;
-import com.entity.view.QicheOrderView;
-import com.service.QicheOrderService;
+import org.springframework.transaction.annotation.Transactional;
 import com.utils.PageUtils;
 import com.utils.Query;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Map;
+import org.springframework.web.context.ContextLoader;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import com.dao.QicheOrderDao;
+import com.entity.QicheOrderEntity;
+import com.service.QicheOrderService;
+import com.entity.view.QicheOrderView;
 
 
 /**
