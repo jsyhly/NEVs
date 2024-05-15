@@ -1,16 +1,16 @@
 package com.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.entity.CartEntity;
 import com.utils.PageUtils;
-
+import com.entity.QicheOrderEntity;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
- * 购物车 服务类
+ * 汽车订单 服务类
  */
-public interface CartService extends IService<CartEntity> {
+public interface QicheOrderService extends IService<QicheOrderEntity> {
 
     /**
     * @param params 查询参数
