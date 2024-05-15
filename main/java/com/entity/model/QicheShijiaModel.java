@@ -1,52 +1,46 @@
-package com.entity.vo;
+package com.entity.model;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
+
+
 /**
  * 汽车试驾预定
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ * 接收传参的实体类
+ *（实际开发中配合移动端接口开发手动去掉些没用的字段， 后端一般用entity就够用了）
+ * 取自ModelAndView 的model名称
  */
-@TableName("qiche_shijia")
-public class QicheShijiaVO implements Serializable {
+public class QicheShijiaModel implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
 
 
     /**
      * 主键
      */
-
-    @TableField(value = "id")
     private Integer id;
 
 
     /**
      * 编号
      */
-
-    @TableField(value = "qiche_shijia_order_uuid_number")
     private String qicheShijiaOrderUuidNumber;
 
 
     /**
      * 汽车
      */
-
-    @TableField(value = "qiche_id")
     private Integer qicheId;
 
 
     /**
      * 用户
      */
-
-    @TableField(value = "yonghu_id")
     private Integer yonghuId;
 
 
@@ -55,24 +49,18 @@ public class QicheShijiaVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "qiche_shijia_order_time")
     private Date qicheShijiaOrderTime;
 
 
     /**
      * 预定审核
      */
-
-    @TableField(value = "qiche_shijia_order_yesno_types")
     private Integer qicheShijiaOrderYesnoTypes;
 
 
     /**
      * 审核结果
      */
-
-    @TableField(value = "qiche_shijia_order_yesno_text")
     private String qicheShijiaOrderYesnoText;
 
 
@@ -81,8 +69,6 @@ public class QicheShijiaVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
@@ -91,13 +77,11 @@ public class QicheShijiaVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "create_time")
     private Date createTime;
 
 
     /**
-	 * 设置：主键
+	 * 获取：主键
 	 */
     public Integer getId() {
         return id;
@@ -105,14 +89,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：主键
+	 * 设置：主键
 	 */
-
     public void setId(Integer id) {
         this.id = id;
     }
     /**
-	 * 设置：编号
+	 * 获取：编号
 	 */
     public String getQicheShijiaOrderUuidNumber() {
         return qicheShijiaOrderUuidNumber;
@@ -120,14 +103,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：编号
+	 * 设置：编号
 	 */
-
     public void setQicheShijiaOrderUuidNumber(String qicheShijiaOrderUuidNumber) {
         this.qicheShijiaOrderUuidNumber = qicheShijiaOrderUuidNumber;
     }
     /**
-	 * 设置：汽车
+	 * 获取：汽车
 	 */
     public Integer getQicheId() {
         return qicheId;
@@ -135,14 +117,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：汽车
+	 * 设置：汽车
 	 */
-
     public void setQicheId(Integer qicheId) {
         this.qicheId = qicheId;
     }
     /**
-	 * 设置：用户
+	 * 获取：用户
 	 */
     public Integer getYonghuId() {
         return yonghuId;
@@ -150,14 +131,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：用户
+	 * 设置：用户
 	 */
-
     public void setYonghuId(Integer yonghuId) {
         this.yonghuId = yonghuId;
     }
     /**
-	 * 设置：预定时间
+	 * 获取：预定时间
 	 */
     public Date getQicheShijiaOrderTime() {
         return qicheShijiaOrderTime;
@@ -165,14 +145,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：预定时间
+	 * 设置：预定时间
 	 */
-
     public void setQicheShijiaOrderTime(Date qicheShijiaOrderTime) {
         this.qicheShijiaOrderTime = qicheShijiaOrderTime;
     }
     /**
-	 * 设置：预定审核
+	 * 获取：预定审核
 	 */
     public Integer getQicheShijiaOrderYesnoTypes() {
         return qicheShijiaOrderYesnoTypes;
@@ -180,14 +159,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：预定审核
+	 * 设置：预定审核
 	 */
-
     public void setQicheShijiaOrderYesnoTypes(Integer qicheShijiaOrderYesnoTypes) {
         this.qicheShijiaOrderYesnoTypes = qicheShijiaOrderYesnoTypes;
     }
     /**
-	 * 设置：审核结果
+	 * 获取：审核结果
 	 */
     public String getQicheShijiaOrderYesnoText() {
         return qicheShijiaOrderYesnoText;
@@ -195,14 +173,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：审核结果
+	 * 设置：审核结果
 	 */
-
     public void setQicheShijiaOrderYesnoText(String qicheShijiaOrderYesnoText) {
         this.qicheShijiaOrderYesnoText = qicheShijiaOrderYesnoText;
     }
     /**
-	 * 设置：创建时间
+	 * 获取：创建时间
 	 */
     public Date getInsertTime() {
         return insertTime;
@@ -210,14 +187,13 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：创建时间
+	 * 设置：创建时间
 	 */
-
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
     /**
-	 * 设置：创建时间
+	 * 获取：创建时间
 	 */
     public Date getCreateTime() {
         return createTime;
@@ -225,11 +201,10 @@ public class QicheShijiaVO implements Serializable {
 
 
     /**
-	 * 获取：创建时间
+	 * 设置：创建时间
 	 */
-
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-}
+    }

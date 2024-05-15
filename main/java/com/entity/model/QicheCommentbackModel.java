@@ -1,52 +1,46 @@
-package com.entity.vo;
+package com.entity.model;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
+
+
 /**
  * 汽车评价
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ * 接收传参的实体类
+ *（实际开发中配合移动端接口开发手动去掉些没用的字段， 后端一般用entity就够用了）
+ * 取自ModelAndView 的model名称
  */
-@TableName("qiche_commentback")
-public class QicheCommentbackVO implements Serializable {
+public class QicheCommentbackModel implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
 
 
     /**
      * 主键
      */
-
-    @TableField(value = "id")
     private Integer id;
 
 
     /**
      * 汽车
      */
-
-    @TableField(value = "qiche_id")
     private Integer qicheId;
 
 
     /**
      * 用户
      */
-
-    @TableField(value = "yonghu_id")
     private Integer yonghuId;
 
 
     /**
      * 评价内容
      */
-
-    @TableField(value = "qiche_commentback_text")
     private String qicheCommentbackText;
 
 
@@ -55,16 +49,12 @@ public class QicheCommentbackVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
     /**
      * 回复内容
      */
-
-    @TableField(value = "reply_text")
     private String replyText;
 
 
@@ -73,8 +63,6 @@ public class QicheCommentbackVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "update_time")
     private Date updateTime;
 
 
@@ -83,13 +71,11 @@ public class QicheCommentbackVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "create_time")
     private Date createTime;
 
 
     /**
-	 * 设置：主键
+	 * 获取：主键
 	 */
     public Integer getId() {
         return id;
@@ -97,14 +83,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：主键
+	 * 设置：主键
 	 */
-
     public void setId(Integer id) {
         this.id = id;
     }
     /**
-	 * 设置：汽车
+	 * 获取：汽车
 	 */
     public Integer getQicheId() {
         return qicheId;
@@ -112,14 +97,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：汽车
+	 * 设置：汽车
 	 */
-
     public void setQicheId(Integer qicheId) {
         this.qicheId = qicheId;
     }
     /**
-	 * 设置：用户
+	 * 获取：用户
 	 */
     public Integer getYonghuId() {
         return yonghuId;
@@ -127,14 +111,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：用户
+	 * 设置：用户
 	 */
-
     public void setYonghuId(Integer yonghuId) {
         this.yonghuId = yonghuId;
     }
     /**
-	 * 设置：评价内容
+	 * 获取：评价内容
 	 */
     public String getQicheCommentbackText() {
         return qicheCommentbackText;
@@ -142,14 +125,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：评价内容
+	 * 设置：评价内容
 	 */
-
     public void setQicheCommentbackText(String qicheCommentbackText) {
         this.qicheCommentbackText = qicheCommentbackText;
     }
     /**
-	 * 设置：评价时间
+	 * 获取：评价时间
 	 */
     public Date getInsertTime() {
         return insertTime;
@@ -157,14 +139,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：评价时间
+	 * 设置：评价时间
 	 */
-
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
     /**
-	 * 设置：回复内容
+	 * 获取：回复内容
 	 */
     public String getReplyText() {
         return replyText;
@@ -172,14 +153,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：回复内容
+	 * 设置：回复内容
 	 */
-
     public void setReplyText(String replyText) {
         this.replyText = replyText;
     }
     /**
-	 * 设置：回复时间
+	 * 获取：回复时间
 	 */
     public Date getUpdateTime() {
         return updateTime;
@@ -187,14 +167,13 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：回复时间
+	 * 设置：回复时间
 	 */
-
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
     /**
-	 * 设置：创建时间
+	 * 获取：创建时间
 	 */
     public Date getCreateTime() {
         return createTime;
@@ -202,11 +181,10 @@ public class QicheCommentbackVO implements Serializable {
 
 
     /**
-	 * 获取：创建时间
+	 * 设置：创建时间
 	 */
-
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-}
+    }

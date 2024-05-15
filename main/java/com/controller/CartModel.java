@@ -1,52 +1,46 @@
-package com.entity.vo;
+package com.controller;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
+
+
 /**
  * 购物车
- * 手机端接口返回实体辅助类
- * （主要作用去除一些不必要的字段）
+ * 接收传参的实体类
+ *（实际开发中配合移动端接口开发手动去掉些没用的字段， 后端一般用entity就够用了）
+ * 取自ModelAndView 的model名称
  */
-@TableName("cart")
-public class CartVO implements Serializable {
+public class CartModel implements Serializable {
     private static final long serialVersionUID = 1L;
+
+
 
 
     /**
      * 主键
      */
-
-    @TableField(value = "id")
     private Integer id;
 
 
     /**
      * 所属用户
      */
-
-    @TableField(value = "yonghu_id")
     private Integer yonghuId;
 
 
     /**
      * 汽车
      */
-
-    @TableField(value = "qiche_id")
     private Integer qicheId;
 
 
     /**
      * 购买数量
      */
-
-    @TableField(value = "buy_number")
     private Integer buyNumber;
 
 
@@ -55,8 +49,6 @@ public class CartVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "create_time")
     private Date createTime;
 
 
@@ -65,8 +57,6 @@ public class CartVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "update_time")
     private Date updateTime;
 
 
@@ -75,13 +65,11 @@ public class CartVO implements Serializable {
      */
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat
-
-    @TableField(value = "insert_time")
     private Date insertTime;
 
 
     /**
-	 * 设置：主键
+	 * 获取：主键
 	 */
     public Integer getId() {
         return id;
@@ -89,14 +77,13 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：主键
+	 * 设置：主键
 	 */
-
     public void setId(Integer id) {
         this.id = id;
     }
     /**
-	 * 设置：所属用户
+	 * 获取：所属用户
 	 */
     public Integer getYonghuId() {
         return yonghuId;
@@ -104,14 +91,13 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：所属用户
+	 * 设置：所属用户
 	 */
-
     public void setYonghuId(Integer yonghuId) {
         this.yonghuId = yonghuId;
     }
     /**
-	 * 设置：汽车
+	 * 获取：汽车
 	 */
     public Integer getQicheId() {
         return qicheId;
@@ -119,14 +105,13 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：汽车
+	 * 设置：汽车
 	 */
-
     public void setQicheId(Integer qicheId) {
         this.qicheId = qicheId;
     }
     /**
-	 * 设置：购买数量
+	 * 获取：购买数量
 	 */
     public Integer getBuyNumber() {
         return buyNumber;
@@ -134,14 +119,13 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：购买数量
+	 * 设置：购买数量
 	 */
-
     public void setBuyNumber(Integer buyNumber) {
         this.buyNumber = buyNumber;
     }
     /**
-	 * 设置：添加时间
+	 * 获取：添加时间
 	 */
     public Date getCreateTime() {
         return createTime;
@@ -149,14 +133,13 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：添加时间
+	 * 设置：添加时间
 	 */
-
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
     /**
-	 * 设置：更新时间
+	 * 获取：更新时间
 	 */
     public Date getUpdateTime() {
         return updateTime;
@@ -164,14 +147,13 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：更新时间
+	 * 设置：更新时间
 	 */
-
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
     /**
-	 * 设置：创建时间
+	 * 获取：创建时间
 	 */
     public Date getInsertTime() {
         return insertTime;
@@ -179,11 +161,10 @@ public class CartVO implements Serializable {
 
 
     /**
-	 * 获取：创建时间
+	 * 设置：创建时间
 	 */
-
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
 
-}
+    }

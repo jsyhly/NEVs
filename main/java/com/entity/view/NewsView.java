@@ -1,7 +1,7 @@
 package com.entity.view;
 
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.entity.YonghuEntity;
+import com.entity.NewsEntity;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.Serializable;
@@ -9,28 +9,28 @@ import java.lang.reflect.InvocationTargetException;
 
 
 /**
- * 用户
+ * 公告信息
  * 后端返回视图实体辅助类
  * （通常后端关联的表或者自定义的字段需要返回使用）
  */
-@TableName("yonghu")
-public class YonghuView extends YonghuEntity implements Serializable {
+@TableName("news")
+public class NewsView extends NewsEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
 		/**
-		* 性别的值
+		* 公告类型的值
 		*/
-		private String sexValue;
+		private String newsValue;
 
 
 
-	public YonghuView() {
+	public NewsView() {
 
 	}
 
-	public YonghuView(YonghuEntity yonghuEntity) {
+	public NewsView(NewsEntity newsEntity) {
 		try {
-			BeanUtils.copyProperties(this, yonghuEntity);
+			BeanUtils.copyProperties(this, newsEntity);
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,16 +40,16 @@ public class YonghuView extends YonghuEntity implements Serializable {
 
 
 			/**
-			* 获取： 性别的值
+			* 获取： 公告类型的值
 			*/
-			public String getSexValue() {
-				return sexValue;
+			public String getNewsValue() {
+				return newsValue;
 			}
 			/**
-			* 设置： 性别的值
+			* 设置： 公告类型的值
 			*/
-			public void setSexValue(String sexValue) {
-				this.sexValue = sexValue;
+			public void setNewsValue(String newsValue) {
+				this.newsValue = newsValue;
 			}
 
 
